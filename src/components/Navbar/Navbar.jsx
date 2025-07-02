@@ -1,8 +1,11 @@
-import React from 'react'
-import logoImg from "../../assets/Logo.png"
+import React from 'react';
+import { useNavigate } from 'react-router-dom'; // ⬅️ Importante para navegação
+import logoImg from "../../assets/Logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = ({ sidebar, setSidebar }) => {
+    const navigate = useNavigate(); // ⬅️ Hook de navegação
+
     return (
         <div className='absolute top-0 left-0 w-full py-2 z-20'>
             <div className='container'>
@@ -19,9 +22,15 @@ const Navbar = ({ sidebar, setSidebar }) => {
                         <li><a href="#">Busca</a></li>
                         <li><a href="#">Adoção</a></li>
                         <li><a href="#">Anunciar</a></li>
-                        <li><a href="#">Entrar</a></li>
+                        <li>
+                            <button
+                                onClick={() => navigate('/login')}
+                                className="hover:text-purple-700 transition"
+                            >
+                                Entrar
+                            </button>
+                        </li>
                     </ul>
-
 
                     {/* Hamburger menu */}
                     <div onClick={() => setSidebar(!sidebar)} className='md:hidden'>
@@ -30,7 +39,7 @@ const Navbar = ({ sidebar, setSidebar }) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;
